@@ -8,11 +8,11 @@ class Swiggy():
         
         self.restaurant_dict = {"SHAAM E KHAAS":0, "SPICE WORLD":0, "BASKIN ROBBINS":0,"CHATORI GALI":0,"HYDERABADI BIRYANI":0}  #Dictionary of Restaurants
         self.menu_restaurant = {
-                "SHAAM E KHAAS" : {"PANEER LABABDAR":250, "PANEER DO PYAZA":300, "VEG MANCHURIAN DRY ":250,\
-                    "PANEER CHILLI      ":255, "FRUIT CUSTARD   ":200},\
+                "SHAAM E KHAAS" : {"HOT AND SOUR     ":109, "PANEER DO PYAZA":300, "VEG MANCHURIAN DRY ":250,\
+                      "CHESSE CAKE " : 149,"FRUIT CUSTARD   ":200},\
                 "SPICE WORLD" : {"CHEESE FINGERS" : 199,"VEGGIE PIZZA" : 300, "HAKKA NOODLES" : 220,\
-                    "STUFFED KULCHA" : 69, "CHESSE CAKE " : 149},\
-                "BASKIN ROBBINS" : {"HOT AND SOUR     ":109, "BABY CORN      ":219, "MASALA DOSA   ":300, "CHILLY POTATO  ":219,\
+                    "STUFFED KULCHA" : 69,"PANEER CHILLI      ":255},\
+                "BASKIN ROBBINS" : {"PANEER LABABDAR":250, "BABY CORN      ":219, "MASALA DOSA   ":300, "CHILLY POTATO  ":219,\
                     "CLUB SANDWICH":250},\
                 "CHATORI GALI" : {"VEG KADAI     ":190, "PANEER TIKKA":260, "JEERA RICE  ":150, "SOYA CHAAP    ":180,\
                     "CHICKEN LOLLIPOP":350},\
@@ -422,8 +422,13 @@ class Swiggy():
             print()
             sec_item = (input("SEARCH YOUR DISS Or CHOOSE OTHER OPTION: ").upper())
             if sec_item == "V":
-                self.cart(dish_input_food_list,dish_input_price_list,dish_quantity_list,res)
-                break
+                if dish_input_food_list != [] and dish_input_price_list != [] and dish_quantity_list != []:
+                        self.cart(dish_input_food_list,dish_input_price_list,dish_quantity_list,res)
+                        break
+                else:
+                    print("\n"*2)
+                    print("\t"*4,"YOUR CART IS EMPTY!!")
+                    continue
             elif sec_item == "M":
                 self.mainMenu()
                 break
@@ -448,7 +453,7 @@ class Swiggy():
                             cart_dict[i] = b
                             print("(",a,")",x,(" "*20),"Price: ",y)
                             print('-'*60)
-            
+    
             slect_item = int(input("SELECT YOUR CHOISE: ")) 
             a = 0
             for i, j in cart_dict.items():
